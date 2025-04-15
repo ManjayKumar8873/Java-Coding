@@ -1,7 +1,13 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class DuplicateLement {
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         
         String names[] = {"Java", "Python", "C", "Java", "ruby", "C", "JavaScript"};
@@ -25,5 +31,28 @@ public class DuplicateLement {
             }
         }
 
+        //3. Using HashMap
+
+         Map <String, Integer> storeMap = new HashMap<String, Integer>();
+
+         for(String name: names ){
+            Integer count = storeMap.get(name);
+            if (count == null) {
+                storeMap.put(name, 1);
+            }
+            else{
+                storeMap.put(name, ++count);
+            }
+         }
+
+        //  get the value from this Hashmap
+
+        Set<Entry<String, Integer>> entrySet = storeMap.entrySet();
+         for(Entry<String, Integer> entry: entrySet){
+            if (entry.getValue()>1) {
+                System.out.println("Duplicate element: " + entry.getKey());
+            }
+         }
+         
     }
 }
